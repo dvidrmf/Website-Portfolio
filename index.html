@@ -4173,16 +4173,37 @@
 
     /* ── Mobile/Desktop Visibility Utilities ── */
     @media (max-width: 768px) {
-      .desktop-only { display: none !important; }
-      .mobile-only { display: block !important; }
-      .mobile-only-inline { display: inline !important; }
-      
-      .bk-item-name { font-size: 0.65rem !important; }
-      .bk-item-sub { font-size: 0.55rem !important; }
-      .bk-items-lbl { font-size: 0.65rem !important; }
+      .desktop-only {
+        display: none !important;
+      }
+
+      .mobile-only {
+        display: block !important;
+      }
+
+      .mobile-only-inline {
+        display: inline !important;
+      }
+
+      .bk-item-name {
+        font-size: 0.65rem !important;
+      }
+
+      .bk-item-sub {
+        font-size: 0.55rem !important;
+      }
+
+      .bk-items-lbl {
+        font-size: 0.65rem !important;
+      }
     }
+
     @media (min-width: 769px) {
-      .mobile-only, .mobile-only-inline { display: none !important; }
+
+      .mobile-only,
+      .mobile-only-inline {
+        display: none !important;
+      }
     }
 
     /* ============================== SCROLL INDICATOR ============================== */
@@ -6005,42 +6026,6 @@
         tags: ['react', 'deep dive'],
         content: ["Both disciplines are fundamentally about reading patterns. A developer looks at a codebase and sees signal in the noise — naming conventions that reveal intent, architectural choices that betray past decisions, comments that hint at old fears.", "Debugging and introspection share a method: isolate the variable, test the assumption, follow the unexpected result to its root. Whether you're tracing a null pointer exception or untangling a recurring pattern in your own behavior, the process is identical.", "The overlap taught me that logic and intuition aren't opposites — they're complementary tools. The best developers I know are deeply intuitive about their systems. Read the code. Read the room. Same skill."],
         code: '// history API router\nwindow.addEventListener("popstate", handleRoute);\nfunction navigate(path) {\n  history.pushState({}, "", path);\n  handleRoute();\n}'
-      },
-      {
-        id: 4, file: 'entry_10012024.txt', year: '2024',
-        title: 'SQLite Is Actually Great for Production (in the Right Context)',
-        date: 'Oct 01, 2024',
-        excerpt: "A look at how single-file SQLite databases can handle surprising load when used correctly — and when you absolutely should not.",
-        tags: ['sqlite', 'databases', 'backend'],
-        content: ["SQLite gets dismissed as a 'toy database' but that's a surface-level read. For read-heavy workloads with reasonable concurrency, it consistently outperforms Postgres in my benchmarks — because it eliminates the network round-trip entirely.", "The key insight: SQLite shines when your database lives on the same machine as your app. Edge deployments, embedded applications, CLI tools, testing environments — these are SQLite's home territory. Forcing it into a distributed system is where people get hurt.", "The write concurrency limitation is real but overstated. WAL mode pushes SQLite further than most tutorials suggest. I've run production APIs on SQLite serving thousands of requests per minute without issue. The constraint isn't the database — it's the architecture."],
-        code: '-- WAL mode for better concurrency\nPRAGMA journal_mode=WAL;\nPRAGMA synchronous=NORMAL;\nPRAGMA cache_size=10000;'
-      },
-      {
-        id: 5, file: 'entry_09072024.txt', year: '2024',
-        title: 'My Neovim Config After 2 Years of Daily Use',
-        date: 'Sep 07, 2024',
-        excerpt: "A walkthrough of the plugins, keybindings, and philosophy behind my Neovim setup — plus what I've removed over time.",
-        tags: ['tools', 'neovim', 'productivity'],
-        content: ["Two years in, my config has gone through three complete rewrites. The first was cargo-culted from YouTube tutorials. The second tried to make Neovim into VS Code. The third — the current one — finally feels like mine.", "The philosophy shift that changed everything: remove more than you add. Every plugin should earn its place. If I haven't used a feature in two weeks, it leaves. The config is now 40% smaller than its peak and I'm 30% faster.", "What stayed: telescope.nvim for fuzzy finding, LSP for language intelligence, treesitter for syntax, oil.nvim for file management. What left: 14 plugins I thought I needed. The terminal is the best file tree."],
-        code: "-- init.lua\nrequire('telescope').setup({\n  defaults = { file_ignore_patterns = {'node_modules'} }\n})"
-      },
-      {
-        id: 6, file: 'entry_08222024.txt', year: '2024',
-        title: 'Building Unbreakable React Components',
-        date: 'Aug 22, 2024',
-        excerpt: "Error boundaries, strict typing, and defensive programming: how to write components that never fail quietly.",
-        tags: ['react', 'typescript', 'architecture'],
-        content: ["Building UI components that look good is easy. Building ones that survive the real world is hard. The difference lies in how you handle the unexpected — malformed data, failed network requests, or just weird user interactions.", "Defensive programming in React means expecting your props to be wrong. It means wrapping risky renders in Error Boundaries instead of letting the whole app crash. It means using Discriminated Unions in TypeScript to make invalid states unrepresentable.", "The goal isn't just to prevent crashes; it's to fail gracefully and give the user (and the developer) actionable feedback. A component is truly unbreakable when it tells you exactly why it can't do its job."],
-        code: "type Success = { status: 'ok', data: T };\ntype Error = { status: 'error', error: Error };\ntype Result = Success | Error;"
-      },
-      {
-        id: 7, file: 'entry_07102024.txt', year: '2024',
-        title: 'The Art of Writing Good Commit Messages',
-        date: 'Jul 10, 2024',
-        excerpt: "Stop writing 'fixed bug' and 'wip'. A guide to semantic commits and why your future self will thank you.",
-        tags: ['git', 'best practices', 'workflow'],
-        content: ["A codebase is a history book written by multiple authors, many of whom have already left the company. The code tells you what the system does, but only the commit history can tell you *why*.", "A good commit message answers three questions: What was the context? What is the change? Why was this specific solution chosen? When a bizarre edge-case is discovered months later, a commit message explaining 'Added workaround for IE11 flexbox bug' is invaluable.", "Adopting Semantic Versioning and Conventional Commits (feat:, fix:, chore:) forces you to think about the scope of your changes. If you can't describe your commit in a single summary line, it's too big. Break it down."],
-        code: "feat(auth): implement JWT refresh token flow\n\n- Added interceptor for 401 responses\n- Setup secure HttpOnly cookie storage"
       },
     ];
 
